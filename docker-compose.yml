@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    expose:
+      - 5000
+    depends_on:
+      - redis
+
+  redis:
+    image: "bitnami/redis:latest"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
