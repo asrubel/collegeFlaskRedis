@@ -1,5 +1,5 @@
 from flask import Flask, request
-from app.datastorage import init, add_key, get_key
+from app.datastorage import init, add_key, get_key, get_all_keys
 
 app = Flask(__name__)
 
@@ -17,10 +17,10 @@ def init_datastorage():
 
 @app.route('/college/redis/add')
 def add_to_datastorage():
-    key = request.args.get('key', default='Some value')
+    key = request.args.get('key', default='Some key')
     value = request.args.get('value', default='Default value')
     add_key(key, value)
-    return 'Hello from college!'
+    return 'Key-value pair is added!'
 
 
 @app.route('/college/redis/get')
@@ -31,4 +31,4 @@ def get_from_datastorage():
 
 @app.route('/college/redis/get_all')
 def load_json():
-    return get_key('*')
+    return get_all_keys()

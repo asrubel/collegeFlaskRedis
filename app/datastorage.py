@@ -18,3 +18,7 @@ def add_key(key, value):
 
 def get_key(key):
     return r.get(key)
+
+
+def get_all_keys():
+    return [b.decode('utf-8') for b in r.keys('*')]

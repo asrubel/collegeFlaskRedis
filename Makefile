@@ -13,7 +13,7 @@ show:
 show_all:
 	sudo docker ps -a
 exec_web:
-	sudo docker exec -it collegeflask_web_1 sh
+	sudo docker exec -it collegeflaskredis_web_1 sh
 
 clean:
 	sudo docker-compose --env-file ./.env.list down
